@@ -20,7 +20,7 @@ attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap
 
 // Create a base layer that holds both maps.
 let baseMaps = {
-  Streets: streets,
+  "Streets": streets,
   "Satellite Streets": satelliteStreets
 };
 
@@ -28,15 +28,25 @@ let baseMaps = {
 let map = L.map('mapid', {
   center: [43.7, -79.3],
   zoom: 11,
-  layers: [satelliteStreets]
+  layers: [streets]
 });
 
 // Pass our map layers into our layers control and add the layers control to the map.
 L.control.layers(baseMaps).addTo(map);
 
+let myStyle = {
+  color: "blue",
+  fillColor: "yellow",
+  weight: 1
+}
 let torontoHoods = "https://raw.githubusercontent.com/Fenwayb/Mapping_Earthquakes/main/torontoNeighborhoods.json";
 
 d3.json(torontoHoods).then(function(data) {
   console.log(data);
-  L.geoJSON(data).addTo(map);
+  L.geoJSON(data, {
+    style: myStyle,
+    onEachFeature: function(feature, layer) {
+      layer.bindPopup("<h3> Neighborhood: " +  feature.properties.AREA_NAME + "</h3>")
+    }
+  }).addTo(map);
 });
