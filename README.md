@@ -1,5 +1,4 @@
-<h1 Align="Center">
-   Mapping Earthquakes
+<h1 Align="Center"> Mapping Earthquakes </h1>
 
 <p> in this assignment we used Mapbox, Leafletjs, and GeoJSONs to create a webpage that displays earthquakes and tectonic plates. This map can be toggled between street, satellite, and dark modes and can be set to display any/all of earthquakes, tectonic plates, and major earthquakes (ones above 5 magnitude)</p>
 
